@@ -483,6 +483,7 @@ service_parse_args() {
       "--config-options")        set -- "$@" "-c" ;;
       "--custom-env")            set -- "$@" "-C" ;;
       "--database")              set -- "$@" "-d" ;;
+      "--docker-args")           set -- "$@" "-D" ;;
       "--image-version")         set -- "$@" "-I" ;;
       "--image")                 set -- "$@" "-i" ;;
       "--memory")                set -- "$@" "-m" ;;
@@ -496,7 +497,7 @@ service_parse_args() {
   done
 
   OPTIND=1
-  while getopts "a:c:C:d:i:I:m:p:q:R:r:u:" opt; do
+  while getopts "a:c:C:d:D:i:I:m:p:q:R:r:u:" opt; do
     case "$opt" in
       a)
          SERVICE_ALIAS="${OPTARG^^}"; export SERVICE_ALIAS="${SERVICE_ALIAS%_URL}"
@@ -506,6 +507,8 @@ service_parse_args() {
       C) export SERVICE_CUSTOM_ENV=$OPTARG
          ;;
       d) export SERVICE_DATABASE=$OPTARG
+         ;;
+      D) export DOCKER_ARGS=$OPTARG   
          ;;
       i) export PLUGIN_IMAGE=$OPTARG
          ;;
