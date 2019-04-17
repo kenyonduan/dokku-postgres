@@ -60,6 +60,8 @@ service_create() {
   [[ -n "$DOCKER_ARGS" ]] && POSTGRES_DOCKER_ARGS="$DOCKER_ARGS"
   if [[ -n $POSTGRES_DOCKER_ARGS ]]; then    
     echo "$POSTGRES_DOCKER_ARGS" > "$SERVICE_ROOT/DOCKER_ARGS"
+  else
+    echo "" > "$SERVICE_ROOT/DOCKER_ARGS"
   fi
   
   service_create_container "$SERVICE"
